@@ -4,7 +4,7 @@ using MessageFilter.Utils;
 
 namespace MessageFilter.Core {
     public static class MessageListener {
-        public static bool FilterMessage(BaseChatFilter chat, BaseKeyWordSystem keyWordSystem, string input) {
+        public static bool FilterMessage(BaseChatFilter chat, BaseKeyWordSystem keyWordSystem, string input, int maxInputLength = 750) {
             if (CanFilterMessage(input, chat)) return true;
 
             string[] words = StringUtils.Dispatch(input);
@@ -25,7 +25,7 @@ namespace MessageFilter.Core {
             return true;
         }
 
-        private static bool CanFilterMessage(string input, BaseChatFilter chat) =>
-            string.IsNullOrWhiteSpace(input) || chat?.modules == null || chat.modules.Length == 0;
+        private static bool CanFilterMessage(string input, BaseChatFilter chat, int maxInputLength = 750) =>
+            string.IsNullOrWhiteSpace(input) || chat?.modules == null || chat.modules.Length == 0 || input.Length <= maxInputLength;
     }
 }

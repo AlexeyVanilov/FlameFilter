@@ -6,6 +6,7 @@ namespace MessageFilter.Specs {
         public abstract IModule[] modules { get; init; }
         public abstract Action<string> onMessageCancelled { get; set; }
         public abstract Action onMessageAccepted { get; set; }
+        public int maxInputLength { get; protected set; }
         public ListType listType { get; init; }
 
         public void AddModule(IModule module) {

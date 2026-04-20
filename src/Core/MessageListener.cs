@@ -4,8 +4,8 @@ using MessageFilter.Utils;
 
 namespace MessageFilter.Core {
     public static class MessageListener {
-        public static bool FilterMessage(BaseChatFilter chat, BaseKeyWordSystem keyWordSystem, string input, int maxInputLength = 750) {
-            if (CanFilterMessage(input, chat)) return true;
+        public static bool FilterMessage(BaseChatFilter chat, BaseKeyWordSystem keyWordSystem, string input) {
+            if (CanFilterMessage(input, chat, chat.maxInputLength)) return true;
 
             string[] words = StringUtils.Dispatch(input);
 
@@ -25,7 +25,7 @@ namespace MessageFilter.Core {
             return true;
         }
 
-        private static bool CanFilterMessage(string input, BaseChatFilter chat, int maxInputLength = 750) =>
-            string.IsNullOrWhiteSpace(input) || chat?.modules == null || chat.modules.Length == 0 || input.Length <= maxInputLength;
+        private static bool CanFilterMessage(string input, BaseChatFilter chat, int maxInputLength) =>
+            string.IsNullOrWhiteSpace(input) || chat?.modules == null || chat.modules.Length == 0 || input.Length > maxInputLength;
     }
 }

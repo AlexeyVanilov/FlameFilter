@@ -7,7 +7,7 @@ namespace MessageFilter.Core {
         public static bool FilterMessage(BaseChatFilter chat, BaseKeyWordSystem keyWordSystem, string input) {
             if (CanFilterMessage(input, chat, chat.maxInputLength)) return true;
 
-            string[] words = StringUtils.Dispatch(input);
+            string[] words = StringUtils.Dispatch(' ', input);
 
             //Cast modules array to span, for high-perfomance
             Span<IModule> modules = chat.modules.AsSpan(); 

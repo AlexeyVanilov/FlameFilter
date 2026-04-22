@@ -7,13 +7,10 @@ namespace MessageFilter.Core {
         public static bool FilterMessage(BaseChatFilter chat, BaseKeyWordSystem keyWordSystem, string input) {
             if (CanFilterMessage(input, chat, chat.maxInputLength)) return true;
 
-            string[] words = StringUtils.Dispatch(' ', input);
-
-            //Cast modules array to span, for high-perfomance
-            Span<IModule> modules = chat.modules.AsSpan(); 
+            string[] words = StringUtils.Dispatch(' ', input); 
 
             //Module iterations
-            foreach (IModule module in modules) {
+            foreach (IModule module in chat.modules) {
                 if (module == null) continue;
 
                 if (!chat.ActivateModule(keyWordSystem, module, words)) {

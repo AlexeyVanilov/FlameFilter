@@ -1,6 +1,4 @@
-﻿using MessageFilter.Core;
-
-namespace MessageFilter.Specs {
+﻿namespace MessageFilter.Specs {
     public abstract class BaseKeyWordSystem {
         public readonly HashSet<string> _keyWords = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         public BaseChatFilter currentChat { get; init; }

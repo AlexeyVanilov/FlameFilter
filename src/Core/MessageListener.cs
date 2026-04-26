@@ -10,10 +10,12 @@ namespace MessageFilter.Core {
             string[] words = StringUtils.Dispatch(' ', input); 
 
             //Module iterations
-            foreach (IModule module in chat.modules) {
+            for(int i = 0; i < chat.modules.Length; i++) {
+                IModule module = chat.modules[i];
                 if (module == null) continue;
 
-                if (!chat.ActivateModule(keyWordSystem, module, words)) {
+                if (!chat.ActivateModule(keyWordSystem, module, words))
+                {
                     chat.onMessageCancelled?.Invoke(Messages.onMessageCancelled);
                     return false;
                 }

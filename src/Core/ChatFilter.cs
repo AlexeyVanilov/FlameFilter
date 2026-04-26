@@ -1,4 +1,5 @@
 ﻿using MessageFilter.Specs;
+using Utils;
 
 namespace MessageFilter.Core {
     /// <summary>
@@ -7,11 +8,9 @@ namespace MessageFilter.Core {
     public sealed class ChatFilter : BaseChatFilter {
         public ChatFilter(int modulesCapacity, int maxInputLength = defaultMaxInputLength) {
             //set modules array capacity
-            modules = new IModule[modulesCapacity];
+            modules = new Arcane<IModule>(modulesCapacity);
             this.maxInputLength = maxInputLength;
         }
-
-        public override IModule[] modules { get; init; }
 
         public override Action<string> onMessageCancelled { get; set; }
 

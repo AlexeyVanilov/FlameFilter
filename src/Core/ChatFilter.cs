@@ -5,7 +5,7 @@ namespace MessageFilter.Core {
     /// Chat contains modules and events. capacity of modules is immutable, you must define modules capacity on start
     /// </summary>
     public sealed class ChatFilter : BaseChatFilter {
-        public ChatFilter(int modulesCapacity, int maxInputLength = 750) {
+        public ChatFilter(int modulesCapacity, int maxInputLength = defaultMaxInputLength) {
             //set modules array capacity
             modules = new IModule[modulesCapacity];
             this.maxInputLength = maxInputLength;

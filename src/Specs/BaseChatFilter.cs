@@ -3,6 +3,7 @@
 namespace MessageFilter.Specs {
     public abstract class BaseChatFilter {
         private int _index;
+        protected const int defaultMaxInputLength = 750;
         public abstract IModule[] modules { get; init; }
         public abstract Action<string> onMessageCancelled { get; set; }
         public abstract Action onMessageAccepted { get; set; }
